@@ -21,7 +21,7 @@ const App = () => {
   const amountHandler = (e:any) => {
     setGetInput(e.target.value);
   }
-  // console.log(getinput);
+  
 
   return (
     <div className="App">
