@@ -18,9 +18,9 @@ const App = () => {
 
   const [getinput, setGetInput] = useState();
 
-  const amountHandler = (e:any) => {
-    setGetInput(e.target.value);
-  }
+  // const amountHandler = (e:any) => {
+  //   setGetInput(e.target.value);
+  // }
   
 
   return (
@@ -31,7 +31,7 @@ const App = () => {
 
           <Screen>{ amount }</Screen>
           <Wrapper>
-            <input type="number" placeholder='Enter any Amount' style={{marginTop: 30}} onChange={amountHandler} />
+            {/* <input type="number" placeholder='Enter any Amount' style={{marginTop: 30}} onChange={amountHandler} /> */}
            <Button onClick={() => depositMoney(3000)} style={{backgroundColor: '#282c34', marginTop: 10}}>Deposit</Button>
            <Button onClick={() => withdrawMoney(700)} style={{backgroundColor: '#d6b916'}}>Withdraw</Button>
            <Button onClick={() => bankrupt()} style={{backgroundColor: '#bd4016'}}>Bankrupt</Button>
