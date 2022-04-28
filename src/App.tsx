@@ -5,7 +5,7 @@ import { Wrapper, Button, Screen } from "./style"
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators, State } from './state';
-import { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 
 
 
@@ -16,11 +16,17 @@ const App = () => {
   const { depositMoney, withdrawMoney, bankrupt} = bindActionCreators(actionCreators, dispatch)
   const amount = useSelector((state: State) => state.bank)
 
-  const [getinput, setGetInput] = useState();
+  const [value, setValue] = useState(0);
 
-  // const amountHandler = (e:any) => {
-  //   setGetInput(e.target.value);
-  // }
+  const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setValue(Number(e.target.value));
+  }
+
+  const handleDepositClick = () => {
+    depositMoney(value)
+    setValue(0)
+  }
   
 
   return (
@@ -31,9 +37,10 @@ const App = () => {
 
           <Screen>{ amount }</Screen>
           <Wrapper>
-            {/* <input type="number" placeholder='Enter any Amount' style={{marginTop: 30}} onChange={amountHandler} /> */}
-           <Button onClick={() => depositMoney(3000)} style={{backgroundColor: '#282c34', marginTop: 10}}>Deposit</Button>
-           <Button onClick={() => withdrawMoney(700)} style={{backgroundColor: '#d6b916'}}>Withdraw</Button>
+            <input value={`${value}`} type="number" placeholder='Enter any Amount' style={{marginTop: 30}} onChange={amountHandler} />
+            {value}
+           <Button onClick={handleDepositClick} style={{backgroundColor: '#282c34', marginTop: 10}}>Deposit</Button>
+           <Button onClick={() => withdrawMoney(value)} style={{backgroundColor: '#d6b916'}}>Withdraw</Button>
            <Button onClick={() => bankrupt()} style={{backgroundColor: '#bd4016'}}>Bankrupt</Button>
           </Wrapper>
         </Paper>
